@@ -5,7 +5,7 @@ int main(){
   int i = 0;  //宣告判定輸入到第幾位數值得flag
   int inputEnd = 0;  //宣告變數用來儲存使用者輸入字元長度
   printf("Enter a number: ");
-  while(i < 30 && (input[i] = getchar()) != '\n'){  //如果i小於10的情況下且使用者未按下enter則將使用者每個輸入的字元存入input陣列中
+  while(i < 30 && (input[i] = getchar()) != '\n'){  //如果i小於30的情況下且使用者未按下enter則將使用者每個輸入的字元存入input陣列中
     i++;
     flag = i;
   }
