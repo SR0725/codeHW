@@ -2,7 +2,7 @@
 #include <math.h>
 void listSumOfTwoSqrt(int);    //宣告listSumOfTwoSqrt FUNCTION
 void listSumOfTwoSqrt(int num){
-    int count = 0;    //宣告一個變數用來記錄這個數字有多少個因數和
+    int count = 0;    //宣告一個變數用來記錄這個數字有多少個因數組合情況
     for(int y = 0; y <= sqrt(num); y++){    //因為任何一個因數都不可能大於這個數字的開根號所以Y <= sqrt(num)https://github.com/SR0725/codeHW7_1/blob/main/hw.c
         for(int x = 0; x <= y; x++){    //為了避免重複數值顯示 X必定小於等於Y
             if(x*x + y*y == num){    //找到他的因數合時
@@ -11,7 +11,7 @@ void listSumOfTwoSqrt(int num){
             }
         }
     }
-    if(count == 0){    //如果這個數字的因數合為0 告知NOT FOUND
+    if(count == 0){    //如果這個數字的因數組合情況為0 告知NOT FOUND
         printf("Not found.");
     }
 }
