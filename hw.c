@@ -1,22 +1,26 @@
 #include <stdio.h>
-
-int main(){
-  char input[10];       //輸入數列
-  int successFlag = 1;  //紀錄數字是否為八進制數字
-  int i = 0;            //輸入數列的第幾個數字
-  while(i < 10 && (input[i] = getchar()) != '\n'){  //如果i小於10的情況下且使用者未按下enter則將使用者每個輸入的字元存入input陣列中
-    if(input[i] < 48 || input[i] > 55){             //每次輸入一個數字判斷是否為八進制(由於輸入為字元 是以ASCII碼儲存)
-      successFlag = 0;                              //將 successFlag 
-      /*改成 0 值得一提的是由於沒有其他程式能將其改成1 所以一旦存在一個數值並非0~7之間則successFlag永遠為0 反之為1*/
-      break;
+#include <math.h>
+void listSumOfTwoSqrt(int);    //宣告listSumOfTwoSqrt FUNCTION
+void listSumOfTwoSqrt(int num){
+    int count = 0;    //宣告一個變數用來記錄這個數字有多少個因數和
+    for(int y = 0; y <= sqrt(num); y++){    //因為任何一個因數都不可能大於這個數字的開根號所以Y <= sqrt(num)https://github.com/SR0725/codeHW7_1/blob/main/hw.c
+        for(int x = 0; x <= y; x++){    //為了避免重複數值顯示 X必定小於等於Y
+            if(x*x + y*y == num){    //找到他的因數合時
+                printf("\nx=%d,y=%d, %d^2 + %d^2 = %d", x, y, x, y, num);    //顯示訊息
+                count += 1;    //變數加一
+            }
+        }
     }
-    i++;
-  }
+    if(count == 0){    //如果這個數字的因數合為0 告知NOT FOUND
+        printf("Not found.");
+    }
+}
 
-  if(successFlag == 1){  //如果是八進制
-    printf("This is an octal number.");
-  }else{                 //如果不是
-    printf("Not a number.");
-  }
-  return 0;
+int main ()
+{
+   int inputNum;    //宣告輸入數字
+   printf("Please enter a number:");    //顯示告知訊息
+   scanf("%d", &inputNum);    //讀取輸入數字
+   listSumOfTwoSqrt(inputNum);    //將輸入數值送入listSumOfTwoSqrt並處理
+   return(0);
 }
