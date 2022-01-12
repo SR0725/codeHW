@@ -5,16 +5,18 @@
 int main()
 {
     int m,  //矩陣A的列數
-        n,  //矩陣A的行數 (同時也是矩陣B的列數)
-        p;  //矩陣B的行數
+        n,  //矩陣A的行數
+        p,  //矩陣B的列數
+        q;  //矩陣B的行數
 
-    printf("輸入矩陣A之列數m、行數n及矩陣B之行數p\n");
+    printf("輸入矩陣A之列數m、行數n及矩陣B的列數p與行數q\n");
     scanf("%d", &m);
     scanf("%d", &n);
     scanf("%d", &p);
+    scanf("%d", &q);
     int a[m][n],
-          b[n][p],
-          c[m][p];
+          b[p][q],
+          c[m][q];
 
     printf("\n輸入A矩陣\n");
     for(int i = 0; i < m; i ++){
@@ -24,15 +26,15 @@ int main()
     }
 
     printf("\n輸入 B矩陣\n");
-    for(int i = 0; i < n; i ++){
-        for(int j = 0; j < p; j ++){
+    for(int i = 0; i < p; i ++){
+        for(int j = 0; j < q; j ++){
             scanf("%d", &b[i][j]);
         }
     }
 
     /*計算矩陣乘積*/
     for(int i = 0; i < m; i ++){
-        for(int j = 0; j < p; j ++){
+        for(int j = 0; j < q; j ++){
             c[i][j] = 0;
             for(int k = 0; k < n; k ++){
                 c[i][j] += a[i][k] * b[k][j];
