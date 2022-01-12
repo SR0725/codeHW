@@ -1,26 +1,51 @@
+
 #include <stdio.h>
-#include <math.h>
-void listSumOfTwoSqrt(int);    //宣告listSumOfTwoSqrt FUNCTION
-void listSumOfTwoSqrt(int num){
-    int count = 0;    //宣告一個變數用來記錄這個數字有多少個因數組合情況
-    for(int y = 0; y <= sqrt(num); y++){    //因為任何一個因數都不可能大於這個數字的開根號所以Y <= sqrt(num)https://github.com/SR0725/codeHW7_1/blob/main/hw.c
-        for(int x = 0; x <= y; x++){    //為了避免重複數值顯示 X必定小於等於Y
-            if(x*x + y*y == num){    //找到他的因數合時
-                printf("\nx=%d,y=%d, %d^2 + %d^2 = %d", x, y, x, y, num);    //顯示訊息
-                count += 1;    //變數加一
+#include <stdlib.h>
+
+int main()
+{
+    int m,  //矩陣A的列數
+        n,  //矩陣A的行數 (同時也是矩陣B的列數)
+        p;  //矩陣B的行數
+
+    printf("輸入矩陣A之列數m、行數n及矩陣B之行數p\n");
+    scanf("%d", &m);
+    scanf("%d", &n);
+    scanf("%d", &p);
+    int a[m][n],
+          b[n][p],
+          c[m][p];
+
+    printf("\n輸入A矩陣\n");
+    for(int i = 0; i < m; i ++){
+        for(int j = 0; j < n; j ++){
+            scanf("%d", &a[i][j]);
+        }
+    }
+
+    printf("\n輸入 B矩陣\n");
+    for(int i = 0; i < n; i ++){
+        for(int j = 0; j < p; j ++){
+            scanf("%d", &b[i][j]);
+        }
+    }
+
+    /*計算矩陣乘積*/
+    for(int i = 0; i < m; i ++){
+        for(int j = 0; j < p; j ++){
+            c[i][j] = 0;
+            for(int k = 0; k < n; k ++){
+                c[i][j] += a[i][k] * b[k][j];
             }
         }
     }
-    if(count == 0){    //如果這個數字的因數組合情況為0 告知NOT FOUND
-        printf("Not found.");
-    }
-}
 
-int main ()
-{
-   int inputNum;    //宣告輸入數字
-   printf("Please enter a number:");    //顯示告知訊息
-   scanf("%d", &inputNum);    //讀取輸入數字
-   listSumOfTwoSqrt(inputNum);    //將輸入數值送入listSumOfTwoSqrt並處理
-   return(0);
+    /*輸出*/
+    printf("===============\n");
+    for(int i = 0; i < m; i++){
+        for(int j = 0; j < p; j ++){
+            printf("%d   ",c[i][j]);
+        }
+        printf("\n");
+    }
 }
