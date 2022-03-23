@@ -103,25 +103,43 @@ void selection_sort(int a[], int len)
 //地3題
 #include <iostream>
 #include <iomanip>
+#include <math.h>
 
 using namespace std;
 
-struct Circle {
+struct Triangle  {
 	float r = 1;  // 給預設值！
 
 	// this: 表示指向目前所描述物件的指標！
-	Circle(float r) { this->r = r; }  // 建構函式！
-
-	const float pi = 3.14159f;
+	Triangle(float r) { this->r = r; }  // 建構函式！
 
 	float area() {
-		return r*r*pi;
+		return r * ( r / sqrt( 2 )) / 2;
 	}
 	float perimeter() {
-		return 2*pi*r;
+		return 3*r;
 	}
 	void show() {
-		cout << "circle\n半徑 " << r << endl;
+		cout << "Triangle\n邊長 " << r << endl;
+		cout << "面積: " << fixed  <<  setprecision(2) << area() << endl;
+		cout << "周長: " << fixed  <<  setprecision(1) << perimeter() << endl;
+	}
+};
+
+struct Rectangle  {
+	float r = 1;  // 給預設值！
+
+	// this: 表示指向目前所描述物件的指標！
+	Rectangle (float r) { this->r = r; }  // 建構函式！
+
+	float area() {
+		return r * r;
+	}
+	float perimeter() {
+		return 3*4;
+	}
+	void show() {
+		cout << "Rectangle \n邊長 " << r << endl;
 		cout << "面積: " << fixed  <<  setprecision(2) << area() << endl;
 		cout << "周長: " << fixed  <<  setprecision(1) << perimeter() << endl;
 	}
@@ -130,15 +148,27 @@ struct Circle {
 int main(){
 
     // 宣告變數，並給初值:
-    Circle cir1(1), cir2(2), cir3(3);
-    Circle cir4 = Circle(4);
+    Triangle tri1(1), tri2(2), tri3(3);
+    Triangle tri4 = Triangle(4);
 
     // 宣告陣列變數，並給初值:
-    Circle cirs[2] = {Circle(10), Circle(20)};  // 使用"建構函式"建立結構物件！
+    Triangle tris[2] = {Triangle(10), Triangle(20)};  // 使用"建構函式"建立結構物件！
 
     // 使用物件來呼叫其成員函式:
-    cir1.show();
-    cirs[1].show();
+    tri1.show();
+    tris[1].show();
+
+
+    // 宣告變數，並給初值:
+    Rectangle rec1(1), rec2(2), rec3(3);
+    Rectangle rec4 = Rectangle(4);
+
+    // 宣告陣列變數，並給初值:
+    Rectangle recs[2] = {Rectangle(10), Rectangle(20)};  // 使用"建構函式"建立結構物件！
+
+    // 使用物件來呼叫其成員函式:
+    rec1.show();
+    recs[1].show();
     return 0;
 
 }
