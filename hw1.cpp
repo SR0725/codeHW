@@ -52,11 +52,11 @@ void sortTest(int *array,int arrayLengh){
         }
     }
     if(bigToSmallSortedFlag == true){
-        std::cout << "���}�C�g�L�ƦC�A�Ѥj�Ӥp" << '\n';
+        std::cout << "經過排列 由大到小" << '\n';
     }else if(SmallToBigSortedFlag == true){
-        std::cout << "���}�C�g�L�ƦC�A�Ѥp�Ӥj" << '\n';
+        std::cout << "經過排列 由小到大" << '\n';
     }else{
-        std::cout << "���}�C���g�L�ƦC" << '\n';
+        std::cout << "尚未排列" << '\n';
     }
 
 }
