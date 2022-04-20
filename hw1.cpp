@@ -1,99 +1,31 @@
+
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
+#include <cstdlib> /* 亂數相關函數 */
+#include <ctime>   /* 時間相關函數 */
+#define ARRAYLEN 46
 using namespace std;
-int random_int(int,int);
-int* random_Array(int);
-void sortBySmallToBig(int*,int);
-void sortByBigToSmall(int*,int);
-void sortTest(int*,int);
-
-
-int main()
+template <class T>
+T randomNumber(T min, T max)
 {
-    srand( time(NULL) );
-    int array1Lengh = random_int(10, 20);
-    int *array1 = random_Array(array1Lengh);
-    int array2Lengh = random_int(10, 20);
-    int *array2 = random_Array(array2Lengh);
-    int array3Lengh = random_int(10, 20);
-    int *array3 = random_Array(array3Lengh);
-
-    sortByBigToSmall(array1, array1Lengh);
-    sortBySmallToBig(array2, array1Lengh);
-    sortTest(array1, array1Lengh);
-    sortTest(array2, array2Lengh);
-    sortTest(array3, array3Lengh);
-
-
-    delete [] array1;
-    delete [] array2;
-    delete [] array3;
-
+    return (T)((max - min) * (rand() / (RAND_MAX + 1.0))) + min;
 }
 
-void sortTest(int *array,int arrayLengh){
-    bool bigToSmallSortedFlag = true;
-    bool SmallToBigSortedFlag = true;
-    for( int i = 0; i < arrayLengh; i++ ){
-
-        if(array[i + 1] < array[i]){
-            SmallToBigSortedFlag = false;
-            break;
-        }
-    }
-
-    for( int i = 0; i < arrayLengh-1; i++ ){
-        if(array[i + 1] > array[i]){
-            bigToSmallSortedFlag = false;
-            break;
-        }
-    }
-    if(bigToSmallSortedFlag == true){
-        std::cout << "經過排列 由大到小" << '\n';
-    }else if(SmallToBigSortedFlag == true){
-        std::cout << "經過排列 由小到大" << '\n';
-    }else{
-        std::cout << "尚未排列" << '\n';
-    }
-
-}
-
-void sortBySmallToBig(int *array,int arrayLengh){
-    for( int i = 0; i < arrayLengh; i++ ){
-        for( int j = 0; j < arrayLengh; j++ ){
-            if(array[j + 1] < array[j]){
-                int temp = array[j + 1];
-                array[j + 1] = array[j];
-                array[j] = temp;
-            }
-        }
+template <class T>
+void randomArray(T* array, T len)
+{
+    for(int i = 0; i < len; i++){
+        array[i] = randomNumber(1, 100);
     }
 }
 
-void sortByBigToSmall(int *array,int arrayLengh){
-    for( int i = 0; i < arrayLengh; i++ ){
-        for( int j = 0; j < arrayLengh; j++ ){
-            if(array[j + 1] > array[j]){
-                int temp = array[j + 1];
-                array[j + 1] = array[j];
-                array[j] = temp;
-            }
-        }
+int main(){
+    int* array;
+    array = new int [ARRAYLEN];
+    randomArray(array, ARRAYLEN);
+    for(int i = 0; i < ARRAYLEN; i++){
+        cout  << array[i] << endl;
     }
-}
 
-int* random_Array(int arrayLengh){
-    int *arr = new int[arrayLengh];
-    for( int i = 0; i < arrayLengh; i++ ){
-        arr[i] = random_int(0, 99);
-    }
-    return arr;
-}
+    delete [] array;
 
-
-int random_int(int min,int max){
-  return (max - min) * rand() / (RAND_MAX + 1.0) + min;
 }
